@@ -1,0 +1,50 @@
+<nav>
+  <form id="translate-language" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="full-width-field">
+      <mat-label ngFor="name"> Select Language </mat-label>
+      <input
+        placeholder="English, Hindi, etc."
+        style="margin-bottom: -1.25em"
+        matInput
+        id="language"
+        type="text"
+        [formControl]="myControl"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        autoSelectActiveOption
+        #auto="matAutocomplete"
+      >
+        <mat-option
+          *ngFor="let option of filteredOptions | async"
+          [value]="option.name"
+        >
+          {{ option.name[0].toUpperCase() + option.name.slice(1) }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <button
+      mat-button
+      aria-label="search"
+      type="submit"
+      style="margin-top: 10px"
+    >
+      <mat-icon *ngIf="!loading">donut_large</mat-icon>
+      <mat-progress-spinner
+        *ngIf="loading"
+        mode="indeterminate"
+        value="50"
+        diameter="30"
+        color="primary"
+      ></mat-progress-spinner>
+    </button>
+  </form>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button (click)="onLogout()" mat-menu-item>Logout</button>
+  </mat-menu>
+</nav>

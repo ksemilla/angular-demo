@@ -1,0 +1,28 @@
+.container {
+    max-width: 400px;
+    margin: auto;
+    padding-top: 3rem;
+}
+
+.header {
+    font-weight: 500;
+    font-size: 2rem;
+    margin: auto;
+}
+
+.card {
+    padding: 20px 20px;
+}
+
+form {
+    margin: 20px 0px;
+}
+
+button {
+    width: 100%;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+}

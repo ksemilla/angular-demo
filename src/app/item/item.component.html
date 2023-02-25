@@ -1,0 +1,6 @@
+<div class="item" (mouseover)="showEdit = true" (mouseleave)="showEdit = false">
+  <div class="name">{{ item.name }}</div>
+  <div class="edit" (click)="openDialog()">
+    <mat-icon *ngIf="showEdit" class="icon-display">edit</mat-icon>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<form
+  cdkDrag
+  [cdkDragDisabled]="true"
+  [id]="taskName"
+  [formGroup]="itemForm"
+  (ngSubmit)="onSubmit()"
+>
+  <mat-form-field appearance="outline" class="full-width-field">
+    <mat-label ngFor="name">
+      {{
+        taskName === "todo"
+          ? "Add To Do Item"
+          : taskName === "in-progress"
+          ? "Add In Progress Item"
+          : taskName === "review"
+          ? "Add Review Item"
+          : taskName === "done"
+          ? "Add Done Item"
+          : "Add Item"
+      }}
+    </mat-label>
+    <input matInput [id]="taskName" type="text" formControlName="name" />
+    <button mat-button matSuffix aria-label="search" type="submit">
+      <mat-icon *ngIf="!loading">add</mat-icon>
+      <mat-progress-spinner
+        *ngIf="loading"
+        mode="indeterminate"
+        value="50"
+        diameter="30"
+        color="primary"
+      ></mat-progress-spinner>
+    </button>
+  </mat-form-field>
+</form>

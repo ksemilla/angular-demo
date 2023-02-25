@@ -1,0 +1,102 @@
+<div class="tasks-container">
+  <div class="tile-container todo-container">
+    <h1 class="title">To Do</h1>
+    <div
+      class="task"
+      cdkDropList
+      #todoList="cdkDropList"
+      [cdkDropListData]="todo"
+      [cdkDropListConnectedTo]="[inProgressList, reviewList, doneList]"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <app-item
+        *ngFor="let item of todo"
+        [item]="item"
+        [task]="todoTask"
+        cdkDrag
+        (onUpdateItem)="updateItem($event)"
+        (onDeleteItem)="deleteItem($event)"
+      ></app-item>
+      <app-add-item
+        taskName="todo"
+        [task]="todoTask"
+        (onAddItem)="addItem($event)"
+      ></app-add-item>
+    </div>
+  </div>
+  <div class="tile-container in-progress-container">
+    <h1 class="title">In Progress</h1>
+    <div
+      class="task"
+      cdkDropList
+      #inProgressList="cdkDropList"
+      [cdkDropListData]="inProgress"
+      [cdkDropListConnectedTo]="[todoList, reviewList, doneList]"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <app-item
+        *ngFor="let item of inProgress"
+        [item]="item"
+        [task]="inProgressTask"
+        cdkDrag
+        (onUpdateItem)="updateItem($event)"
+        (onDeleteItem)="deleteItem($event)"
+      ></app-item>
+      <app-add-item
+        taskName="in-progress"
+        [task]="inProgressTask"
+        (onAddItem)="addItem($event)"
+      ></app-add-item>
+    </div>
+  </div>
+  <div class="tile-container review-container">
+    <h1 class="title">Review</h1>
+    <div
+      class="task"
+      cdkDropList
+      #reviewList="cdkDropList"
+      [cdkDropListData]="review"
+      [cdkDropListConnectedTo]="[inProgressList, todoList, doneList]"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <app-item
+        *ngFor="let item of review"
+        [item]="item"
+        [task]="reviewTask"
+        cdkDrag
+        (onUpdateItem)="updateItem($event)"
+        (onDeleteItem)="deleteItem($event)"
+      ></app-item>
+      <app-add-item
+        taskName="review"
+        [task]="reviewTask"
+        (onAddItem)="addItem($event)"
+      ></app-add-item>
+    </div>
+  </div>
+  <div class="tile-container done-container">
+    <h1 class="title">Done</h1>
+    <div
+      class="task"
+      cdkDropList
+      #doneList="cdkDropList"
+      [cdkDropListData]="done"
+      [cdkDropListConnectedTo]="[inProgressList, reviewList, todoList]"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <app-item
+        *ngFor="let item of done"
+        [item]="item"
+        [task]="doneTask"
+        cdkDrag
+        (onUpdateItem)="updateItem($event)"
+        (onDeleteItem)="deleteItem($event)"
+      ></app-item>
+      <app-add-item
+        taskName="done"
+        [task]="doneTask"
+        (onAddItem)="addItem($event)"
+      ></app-add-item>
+    </div>
+  </div>
+</div>
